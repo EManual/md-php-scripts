@@ -14,7 +14,6 @@
 
 from path import Path
 import os
-import sys
 import re
 import codecs
 import shutil
@@ -80,8 +79,12 @@ def parser_file_name(file_path):
 
 
 def get_file_title(file_path):
+    """
+    从文件内容提取文件标题
+    :param file_path:
+    :return:
+    """
     lines = __get_real_content_lines(file_path)
-    # print regex_title.findall(lines[0])
     return regex_title.findall(lines[0])[0].strip(' ')
 
 
