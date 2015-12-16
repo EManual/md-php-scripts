@@ -74,7 +74,8 @@ def parser_file_name(file_path):
         'a': spliters[0],
         'b': spliters[1],
         'c': spliters[2],
-        'content': u''.join(content_lines)
+        'content': u''.join(content_lines),
+        'content_lines': content_lines
     }
 
 
@@ -135,11 +136,12 @@ def main():
             dir_index += 1
             file_index = 1
 
-        write_file(cur_dir, u'%04d-%s' % (file_index, title), file_info['content'])
+        # 内容行数不只是有：一级标题 + 一空行 才当做是一页内容
+        if len(file_info['content_lines']) > 2 :
+            write_file(cur_dir, u'%04d-%s' % (file_index, title), file_info['content'])
 
     print('Finish!')
 
 
 if __name__ == '__main__':
     main()
-
